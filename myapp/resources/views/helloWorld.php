@@ -6,10 +6,12 @@
     <style>
         body {color:gray}
         h1 {font-size: 18px; font-weight: bold;}
+        th {color:white; background:#999;}
+        td {color:black; background:#eee; padding:5px 10px;}
     </style>
 </head>
 <body>
-    <h1>Sample</h1>
+    <h1>SampleMyApp</h1>
     <p><?php echo $message; ?></p>
     <table>
         <tr>
