@@ -26,3 +26,5 @@ Route::post('/hello/new', 'HelloController@postNew');
 Route::get('/hello/update', 'HelloController@getUpdate');
 
 Route::post('/hello/update', 'HelloController@postUpdate');
+
+Route::post('/hello/delete', 'HelloController@postDelete');

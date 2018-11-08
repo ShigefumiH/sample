@@ -16,7 +16,7 @@
     <p><?php echo $message; ?></p>
     <table>
         <tr>
-            <th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th><th></th>
+            <th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th><th></th><th></th>
         </tr>
             <?php foreach ($data as $val) { ?>
                 <tr>
@@ -28,6 +28,12 @@
                         <form method="get" action="/hello/update">
                             <input type="hidden" name="id" value="<?php echo $val->id; ?>">
                             <input class="submit" type="submit" value="change data">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="/hello/delete">
+                            <input type="hidden" name="id" value="<?php echo $val->id ?>">
+                            <input class="submit" type="submit" value="delete this data">
                         </form>
                     </td>
                 </tr>

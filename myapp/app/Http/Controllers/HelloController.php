@@ -67,4 +67,11 @@ class HelloController extends Controller {
         $data->save();
         return redirect()->action('HelloController@getIndex');
     }
+
+    public function postDelete(Request $req) {
+        $id = $req->input('id');
+        $data = MyTable::find($id);
+        $data->delete();
+        return redirect()->action('HelloController@getIndex');
+    }
 }
