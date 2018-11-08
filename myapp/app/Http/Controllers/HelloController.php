@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use App\MyTable;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -19,12 +20,17 @@ class HelloController extends Controller {
 //            . '<br>Long URL : ' . $request->fullURL()
 //            . '<br>PATH : ' . $request->path();
 //        return view('helloWorld', ['message' => $res]);
-        $data = DB::select('select * from MyTable');
+//        $data = DB::select('select * from MyTable');
+        $data = MyTable::all();
+//        $id = $request->id;
+//        $data = MyTable::where('id', $id)->get();
         return view('helloWorld', ['message' => 'MyTable List', 'data' => $data]);
     }
 
     public function postIndex(Request $request) {
         $res = "you typed: " . $request->input('str');
-        return view('helloWorld', ['message' => $res]);
+//        $data = DB::select('select * from MyTable');
+        $data = MyTable::where('name', 'like', $request->input('str') . '%')->get();
+        return view('helloWorld', ['message' => $res, 'data' => $data]);
     }
 }
