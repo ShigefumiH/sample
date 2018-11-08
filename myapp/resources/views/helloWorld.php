@@ -8,6 +8,7 @@
         h1 {font-size: 18px; font-weight: bold;}
         th {color:white; background:#999;}
         td {color:black; background:#eee; padding:5px 10px;}
+        .submit {font-size:16px;}
     </style>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <p><?php echo $message; ?></p>
     <table>
         <tr>
-            <th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th>
+            <th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th><th></th>
         </tr>
             <?php foreach ($data as $val) { ?>
                 <tr>
@@ -23,15 +24,21 @@
                     <td><?php echo $val->name; ?></td>
                     <td><?php echo $val->mail; ?></td>
                     <td><?php echo $val->age; ?></td>
+                    <td>
+                        <form method="get" action="/hello/update">
+                            <input type="hidden" name="id" value="<?php echo $val->id; ?>">
+                            <input class="submit" type="submit" value="change data">
+                        </form>
+                    </td>
                 </tr>
             <?php } ?>
     </table>
     <form method="post" action="/hello">
         <input type="text" name="str">
-        <input type="submit" value="search names by prefix">
+        <input class="submit" type="submit" value="search names by prefix">
     </form>
     <form method="get" action="/hello/new">
-        <input type="submit" value="create new data">
+        <input class="submit" type="submit" value="create new data">
     </form>
 </body>
 </html>

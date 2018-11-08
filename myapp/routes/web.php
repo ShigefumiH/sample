@@ -22,3 +22,7 @@ Route::post('/hello', 'HelloController@postIndex');
 Route::get('/hello/new', 'HelloController@getNew');
 
 Route::post('/hello/new', 'HelloController@postNew');
+
+Route::get('/hello/update', 'HelloController@getUpdate');
+
+Route::post('/hello/update', 'HelloController@postUpdate');

@@ -50,4 +50,21 @@ class HelloController extends Controller {
         MyTable::create($data);
         return redirect()->action('HelloController@getIndex');
     }
+
+    public function getUpdate(Request $req) {
+        $id = $req->id;
+        $data = MyTable::find($id);
+        $msg = 'MyTable update [id = ' . $id .']';
+        return view('update', ['message' => $msg, 'data' => $data]);
+    }
+
+    public function postUpdate(Request $req) {
+        $id = $req->input('id');
+        $data = MyTable::find($id);
+        $data->name = $req->input('name');
+        $data->mail = $req->input('mail');
+        $data->age = $req->input('age');
+        $data->save();
+        return redirect()->action('HelloController@getIndex');
+    }
 }
