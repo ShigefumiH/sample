@@ -33,4 +33,21 @@ class HelloController extends Controller {
         $data = MyTable::where('name', 'like', $request->input('str') . '%')->get();
         return view('helloWorld', ['message' => $res, 'data' => $data]);
     }
+
+    public function getNew(Request $req) {
+        return view('new', ['message' => 'MyTable Create']);
+    }
+
+    public function postNew(Request $req) {
+        $name = $req->input('name');
+        $mail = $req->input('mail');
+        $age = $req->input('age');
+        $data = array(
+            'name' => $name,
+            'mail' => $mail,
+            'age' => $age
+        );
+        MyTable::create($data);
+        return redirect()->action('HelloController@getIndex');
+    }
 }

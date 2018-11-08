@@ -28,7 +28,10 @@
     </table>
     <form method="post" action="/hello">
         <input type="text" name="str">
-        <input type="submit">
+        <input type="submit" value="search names by prefix">
+    </form>
+    <form method="get" action="/hello/new">
+        <input type="submit" value="create new data">
     </form>
 </body>
 </html>
