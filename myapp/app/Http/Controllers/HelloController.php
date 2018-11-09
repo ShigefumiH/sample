@@ -16,20 +16,12 @@ use App\Http\Controllers\Controller;
 
 class HelloController extends Controller {
     public function getIndex(Request $request) {
-//        $res = 'URL : ' . $request->url()
-//            . '<br>Long URL : ' . $request->fullURL()
-//            . '<br>PATH : ' . $request->path();
-//        return view('helloWorld', ['message' => $res]);
-//        $data = DB::select('select * from MyTable');
         $data = MyTable::all();
-//        $id = $request->id;
-//        $data = MyTable::where('id', $id)->get();
         return view('helloWorld', ['message' => 'MyTable List', 'data' => $data]);
     }
 
     public function postIndex(Request $request) {
         $res = "you typed: " . $request->input('str');
-//        $data = DB::select('select * from MyTable');
         $data = MyTable::where('name', 'like', $request->input('str') . '%')->get();
         return view('helloWorld', ['message' => $res, 'data' => $data]);
     }
@@ -64,14 +56,18 @@ class HelloController extends Controller {
         $data->name = $req->input('name');
         $data->mail = $req->input('mail');
         $data->age = $req->input('age');
-        $data->save();
+        DB::transaction(function () use ($data){
+            $data->save();
+        });
         return redirect()->action('HelloController@getIndex');
     }
 
     public function postDelete(Request $req) {
         $id = $req->input('id');
         $data = MyTable::find($id);
-        $data->delete();
+        DB::transaction(function () use ($data) {
+           $data->delete();
+        });
         return redirect()->action('HelloController@getIndex');
     }
 }
